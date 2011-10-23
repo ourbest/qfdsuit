@@ -1,0 +1,9 @@
+﻿{"total":7,"rows":[
+{"name":"A","value":"","group":"学科验证","editor":"text"},
+{"name":"B","value":"","group":"学科验证","editor":"text"},
+{"name":"C","value":"","group":"学科验证","editor":"text"},
+{"name":"D","value":"","group":"学科验证","editor":"text"},
+{"name":"E","value":"","group":"学科验证","editor":"text"},
+{"name":"F","value":"","group":"学科验证","editor":"text"},
+{"name":"G","value":"","group":"学科验证","editor":"text"}
+]}

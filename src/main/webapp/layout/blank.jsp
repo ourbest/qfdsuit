@@ -1,0 +1,1 @@
+﻿<jsp:include page="${layout.rputs['body']}"/>

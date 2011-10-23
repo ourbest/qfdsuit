@@ -1,0 +1,218 @@
+#body {
+    width: 960px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    /*border: 1px solid black;*/
+    border-spacing: 0;
+}
+
+th, td {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    white-space: nowrap;
+    border: 1px solid black;
+}
+
+th.empty {
+    border: 0;
+}
+
+.editor_1 {
+    background-color: #efefef;
+}
+
+.editor_2 {
+    background-color: #A4BED4;
+}
+
+.editor_3 {
+    background-color: #296;
+}
+
+.hilight {
+    background-color: #cecece;
+}
+
+.top-form {
+    background-color: #eee;
+}
+
+.form-top {
+    background-color: #efefef;
+}
+
+.form-left {
+    background-color: #ccc;
+}
+
+td.disabled {
+    background: #666666
+}
+
+th.row {
+    /*width: 200px;*/
+    text-align: left;
+    padding-right: 5px;
+}
+
+th.col > div {
+    position: relative;
+    width: 30px;
+    overflow-x: hidden;
+    height: 100px;
+}
+
+th.col div.rotate {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    white-space: nowrap;
+    position: absolute;
+    left: 0;
+    bottom: 20px;
+}
+
+th.level-c-1 div.rotate {
+    bottom: 40px;
+}
+
+.roof {
+    position: relative;
+}
+
+#designer-container {
+    position: relative;
+}
+
+.form-type-0 {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    background-color: #f1f;
+    position: absolute;
+}
+
+.form-type-1 {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    background-color: #ff1;
+    position: absolute;
+}
+
+.type-r-1, .type-c-1 {
+    background: #666
+}
+
+.level-r-0 {
+    padding-left: 5px;
+}
+
+.level-r-1 {
+    padding-left: 20px;
+}
+
+.level-r-2 {
+    padding-left: 30px;
+}
+
+#project-info {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    border: 1px solid #eef;
+    padding: 8px;
+}
+
+#project-info label {
+    display: block;
+    padding: 2px;
+}
+
+#house-editor {
+    position: relative;
+    height: 283px;
+    margin: 105px auto auto 130px;
+    background: url(../images/house.png) 0 -330px transparent no-repeat;
+}
+
+#house-editor-top, #house-editor-left {
+    position: absolute;
+    cursor: pointer;
+}
+
+#house-editor-top.selected {
+    background: url(../images/house.png) 0 0 transparent no-repeat;
+}
+
+#house-editor-left.selected {
+    background: url(../images/house.png) 0 -133px transparent no-repeat;
+}
+
+#house-editor-top {
+    width: 180px;
+    height: 115px;
+    top: -115px;
+    left: 20px;
+}
+
+#house-editor-left {
+    width: 120px;
+    height: 180px;
+    top: 10px;
+    left: -110px;
+    z-index: 10;
+}
+
+#house-editor-forms {
+    margin: 50px 20px;
+    padding: 50px 10px;
+    width: 240px;
+}
+
+#house-editor-forms label {
+    display: block;
+    padding: 4px;
+}
+
+.outer {
+    border: 1px solid #000;
+    border-right: 0 #fff;
+    border-bottom: 0 #fff;
+}
+
+.left {
+    border: 0 #fff;
+    border-left: 1px solid #000;
+}
+
+.top {
+    border: 0 #fff;
+    border-top: 1px solid #000;
+}
+
+.left2 {
+    border: 0 #fff;
+    border-top: 1px solid #000;
+}
+
+.top2 {
+    border: 0 #fff;
+    border-left: 1px solid #000;
+}
+
+.rotated {
+    position: absolute;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+}
+
+.rotated2 {
+    position: absolute;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+}

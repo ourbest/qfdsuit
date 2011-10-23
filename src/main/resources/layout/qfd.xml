@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout-definitions>
+    <global-definition>
+        <part name="header" type="put" value="/layout/header.jsp"/>
+        <part name="navigator" type="put" value="/layout/navigator.jsp"/>
+        <part name="toolbar" type="put" value="/layout/toolbar.jsp"/>
+        <part name="footer" type="put" value="/layout/footer.jsp"/>
+    </global-definition>
+    <definition id="mgr.rd" template="/layout/blank.jsp">
+        <part name="body" type="put" value="${include}"/>
+    </definition>
+    <definition id="mgr.qfd.task" template="/layout/layout.jsp" ref="global">
+        <part name="body" type="put" value="${include}"/>
+        <part name="sidebar" type="put" value="${commonbar}"/>
+        <part name="quicktips" type="put" value="${include}_r"/>
+    </definition>
+</layout-definitions>

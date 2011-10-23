@@ -1,0 +1,168 @@
+.topline{
+	background: #3e5c9b url(../images/topline.png) top repeat-x;
+	height: 10px;
+	padding:0;
+	margin: 0;
+}
+
+.logoview{
+	margin: 0;
+	padding 10px 0 0 0;
+	height: 80px;
+	width: 250px;
+}
+
+.logoblock{
+	float: left;
+	width: 16px;
+	height:70px;
+	background-color: #ff4500;
+	margin: 10px 10px 0 0;
+	padding: 0;
+}
+
+.logo{
+	float: left;
+	background: url(../images/logo.png)  top no-repeat;
+	width: 200px;
+	height: 40px;
+	margin: 10px 0 0 0;
+	padding: 0;	
+}
+
+.toolbar{
+	float: left;
+	width: 210px;
+	height: 30px;
+	margin: 0;
+	padding: 0;	
+	line-height: 30px;
+	text-align: right;
+	color:white;	
+}
+
+.toolbar ul{
+	list-style: none;
+	margin: 10px 0 0 0;
+	padding: 0;
+}
+.toolbar li{
+	display: block;
+	float: right;
+	width: 30px;
+	height: 16px;
+}
+
+.l_shadow{
+	float: right;
+	background: url(../images/navbar_ls.png) right bottom no-repeat;	
+	margin: 10px 0 0 0;
+	padding: 0;
+	height: 70px;
+	width:4px;
+}
+
+.ld_shadow{
+	position: absolute;
+	background: url(../images/navbar_ld.png) right bottom no-repeat;	
+	padding: 0;
+	left: 0;
+	bottom: 0;
+	height: 142px;
+	width:250px;
+	z-index:-1;
+}
+
+.mainbar{
+	color: #FFF;
+	margin: 10px 0 0 0 ;
+	padding: 0;
+	width: 600px;
+	height: 30px;
+}
+
+.holdbar{
+	float: left;
+	color: #FFF;
+	width: 240px;
+	margin: 0;
+}
+
+.srchbox{
+	margin: 10px 10px 0 0;
+	float: right;
+	border: solid 1px #1757c8;
+}
+.holdbar ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 20px;
+}
+
+.holdbar ul li{
+	line-height: 20px;
+	float:left;
+	display: block;
+	width: 25px;
+	padding:0 10px 0 10px; 
+	border-right: solid 1px #FFF;
+	
+}
+
+.holdbar img{
+	vertical-align: middle;
+}
+
+.userbar{
+	float: left;
+	width: 120px;
+	height: 20px;
+	line-height: 20px;
+}
+
+.userbar img{
+	vertical-align: middle;
+}
+
+.logon{
+	position: absolute;
+	right: 10px;
+ 	
+}
+
+a.l-btn {
+	color: #FFF;
+}
+
+.menuview{
+	position: fixed;
+	left: 250px;
+	right:10px;
+	margin: 0;
+	padding: 0;
+	height: 40px;
+	background: url(../images/navbarbg.png) top repeat-x;
+	border-top: solid #333 1px;
+	border-left: solid #333 1px;
+	border-right: solid #333 1px;
+}
+
+.sidebar{
+	padding: 0;
+	margin: 0 0 0 16px;
+	width:234px;
+	overflow: hidden;	
+	min-height: 300px;
+	color: #000;
+	border-top: solid #666 1px;
+}
+
+.sidebarbord{
+	background:url('../images/acnav.png') top no-repeat;
+	padding: 0;
+	margin: 0;
+	width:234px;
+	height:21px;
+	border-bottom: solid #666 1px;	
+}

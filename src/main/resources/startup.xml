@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by yuanli (prient) -->
+<ts-initialize>
+	<startup-config>
+		<startup>
+			<name>startupconfig</name>
+			<clazz>com.ptf.core.impl.StartupConfigImpl</clazz>
+			<actived>false</actived>
+		</startup>
+	</startup-config>
+	<configurations-config>
+		<config clazzname="com.demx.mapping.startup.agent.StartManagerAgent">
+			<alias>startup</alias>
+			<path>startup.xml</path>
+			<actived>true</actived>
+			<reload>true</reload>
+			<inside>TS</inside>
+		</config>
+		<config clazzname="com.demx.mapping.layout.agent.LayoutManagerAgent">
+			<alias>layout</alias>
+			<path>layout</path>
+			<actived>true</actived>
+			<inside>TS</inside>
+		</config>
+	</configurations-config>
+</ts-initialize>

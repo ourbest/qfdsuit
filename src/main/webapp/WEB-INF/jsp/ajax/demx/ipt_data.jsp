@@ -1,0 +1,12 @@
+﻿{"total":10,"rows":[
+{"name":"人员","value":"","group":"型号管理","editor":"text"},
+{"name":"人员","value":"","group":"型号管理","editor":"text"},
+{"name":"人员","value":"","group":"方案总体","editor":"text"},
+{"name":"人员","value":"","group":"方案总体","editor":"text"},
+{"name":"人员","value":"","group":"方案总体","editor":"text"},
+{"name":"人员","value":"","group":"方案总体","editor":"text"},
+{"name":"人员","value":"","group":"学科验证","editor":"text"},
+{"name":"人员","value":"","group":"学科验证","editor":"text"},
+{"name":"人员","value":"","group":"学科验证","editor":"text"},
+{"name":"人员","value":"","group":"学科验证","editor":"text"}
+]}

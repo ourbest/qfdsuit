@@ -1,0 +1,202 @@
+﻿<div class="easyui-accordion" fit="true" border="false">
+    <div title="组织资源管理" selected="true" style="overflow:auto;">
+        <div class="easyui-tabs" fit="true" border="false">
+            <div title="组织人员树" style="padding:20px;overflow:auto;">
+                <ul id="pj" class="easyui-tree" animate="true" dnd="true">
+                    <li>
+                        <span>团队组成</span>
+                        <ul>
+                            <li>
+                                <span>总设计师</span>
+                                <ul>
+                                    <li>
+                                        <span>张三</span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span>总指挥</span>
+                                <ul>
+                                    <li>
+                                        <span>张三</span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span>分系统</span>
+                                <ul>
+                                    <li state="closed">
+                                        <span>推进</span>
+                                        <ul>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li state="closed">
+                                        <span>弹体技术</span>
+                                        <ul>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li state="closed">
+                                        <span>制导系统</span>
+                                        <ul>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li state="closed">
+                                        <span>操作性</span>
+                                        <ul>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li state="closed">
+                                        <span>任务效能</span>
+                                        <ul>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                        </ul>
+
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div title="权限管理树" style="padding:20px;overflow:auto;">
+                <ul id="pv" class="easyui-tree" animate="true" dnd="true">
+                    <li>
+                        <span>团队组成</span>
+                        <ul>
+                            <li>
+                                <span>总设计师</span>
+                                <ul>
+                                    <li>
+                                        <span>张三</span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span>总指挥</span>
+                                <ul>
+                                    <li>
+                                        <span>张三</span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span>分系统</span>
+                                <ul>
+                                    <li state="closed">
+                                        <span>推进</span>
+                                        <ul>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li state="closed">
+                                        <span>弹体技术</span>
+                                        <ul>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li state="closed">
+                                        <span>制导系统</span>
+                                        <ul>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li state="closed">
+                                        <span>操作性</span>
+                                        <ul>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li state="closed">
+                                        <span>任务效能</span>
+                                        <ul>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                            <li>
+                                                <span>某某</span>
+                                            </li>
+                                        </ul>
+
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
