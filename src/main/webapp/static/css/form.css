@@ -104,8 +104,13 @@ th.level-c-1 div.rotate {
     position: absolute;
 }
 
+td.matrix {
+    cursor: pointer;
+}
+
 .type-r-1, .type-c-1 {
-    background: #666
+    background: #666;
+    cursor: default !important;
 }
 
 .level-r-0 {
@@ -215,4 +220,47 @@ th.level-c-1 div.rotate {
     position: absolute;
     -webkit-transform: rotate(-45deg);
     -moz-transform: rotate(-45deg);
+}
+
+.rel-menu, .rel-item {
+    background: url(rel.png) no-repeat;
+}
+
+.rel-menu {
+    background-color: #e6e6fa;
+    border: 1px solid #fa8072;
+}
+
+.rel-item {
+    width: 22px;
+    height: 22px;
+}
+
+.rel-val-0 {
+    background-position: 0 -22px;
+    cursor: pointer;
+}
+
+.rel-val--1 {
+    background-position: 0 0;
+    cursor: pointer;
+}
+
+.rel-val-1 {
+    background-position: 0 -44px;
+    cursor: pointer;
+}
+
+.rel-val-na {
+    background: #666;
+    cursor: default;
+}
+
+.top-menu-items {
+    height: 22px;
+}
+
+.top-menu-items:hover {
+    background: rgba(255, 137, 137, 0.3);
+    cursor: pointer;
 }

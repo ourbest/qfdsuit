@@ -280,7 +280,8 @@
             }
             var clz = t ? t == 2 ? '' : ' form-top' : ' matrix';
             var line = $("<tr></tr>");
-            $("<th class='row level-r-" + row.level + clz + "' id='row_" + row.rowId + "'>" + row.title + "</th>").appendTo(line);
+            $("<th class='row level-r-" + row.level + clz + "' id='row_" + row.rowId + "' type='"
+                + row.type + "'>" + row.title + "</th>").appendTo(line);
             $("<th class='rownum'>" + (idx + 1) + "</th>").appendTo(line);
             tbl.find('th.col').each(function(i, col) {
                 var colId = col.id.substr(4); //col_
@@ -381,11 +382,39 @@
             line.appendTo(tbl);
         }
 
-        function __init() {
+        function __init_inline() {
             $mine.undelegate(".inline", "click");
             $mine.delegate(".inline", "click", function() {
                 __show_editor(this);
             });
+        }
+
+        function __init_rel_menu() {
+            $mine.undelegate(".rel-item", "dblclick");
+            $mine.delegate(".rel-item", "dblclick", function(e) {
+                $(".rel-menu").remove();
+                if ($(this).hasClass("rel-val-na")) return;
+                var me = this;
+                var menu = $('<div class="rel-menu" style="width:22px;height:65px">' +
+                    '<div class="top-menu-items" val="-1"></div>' +
+                    '<div class="top-menu-items" val="0"></div>' +
+                    '<div class="top-menu-items" val="1"></div></div>');
+                menu.appendTo("body");
+                menu.css({"position":"absolute", "z-order":"100", "left": e.clientX, "top":e.clientY});
+                menu.delegate(".top-menu-items", "click", function() {
+                    var v = $(this).attr("val");
+                    $(me).attr("class", "rotated rel-item rel-val-" + v);
+                    $(".rel-menu").remove();
+                    $.post(opts.save_data_api,
+                        {projectId:opts.projectId, formId: opts.formId, rowId: $(me).attr("row"), colId:$(me).attr("col"), data:v});
+                });
+            });
+        }
+
+        function __init() {
+            __init_inline();
+            __init_rel_menu();
+
             $mine.html('');
             $mine.css('position', 'relative');
             var container = $("<div class='qfd-form'>" +
@@ -441,10 +470,22 @@
                 if (opts.matrix.hasLeft) {
                     __printLeft();
                 }
+
+                __load_rel_val();
             }
         }
 
-        var tlt, topStep = 34, topWidth = 22;
+        function __load_rel_val() {
+            $.get(opts.load_data_api, {formId:opts.formId, projectId:opts.projectId}, function(data) {
+                $.each(data, function(i, a) {
+                    var rid = a.rowId;
+                    var cid = a.colId;
+                    $("div[row='" + rid + "'][col='" + cid + "']")
+                        .removeClass("rel-val-0")
+                        .addClass("rel-val-" + a.data);
+                });
+            });
+        }
 
         function __setTopMargin(container) {
             var $colTh = $("th.matrix:not(.row)");
@@ -506,12 +547,18 @@
             }
 
             for (i = 0; i < size; i++) {
-                thme = $($colTh[i]);
                 for (var j = i + 1; j < size; j++) {
+                    thme = $($colTh[j - i - 1]);
                     var r2 = $($colTh[j]);
-                    $d = $("<div class='rotated' col='" + thme.attr("id") + "' row='" + r2.attr("id") + "'>0</div>").appendTo(form);
-                    $d.width(ow).height(ow).css({top:'-' + ((i + 1) * od / 2 + 1) + 'px',
-                        left:($first.position().left + (j) * od - 8 - (i * od / 2)) + 'px'});
+                    var clz = "rel-val-0";
+                    if (thme.attr("type") == '1' || r2.attr("type") == '1') {
+                        clz = "rel-val-na";
+                    }
+
+                    $d = $("<div class='rotated rel-item " + clz + "' row='" + thme.attr("id").substr(4) + "' col='" + r2.attr("id").substr(4) + "'>" +
+                        "</div>").appendTo(form);
+                    $d.width(ow).height(ow).css({top:'-' + ((i + 1) * od / 2 + 11) + 'px',
+                        left:($first.position().left + (j) * od - 11 - (i * od / 2)) + 'px'});
                 }
             }
         }
@@ -555,12 +602,17 @@
             }
 
             for (i = 0; i < size; i++) {
-                var thme = $($rowTh[i]);
                 for (var j = i + 1; j < size; j++) {
+                    var thme = $($rowTh[j - i - 1]);
                     var r2 = $($rowTh[j]);
-                    $d = $("<div class='rotated' col='" + thme.attr("id") + "' row='" + r2.attr("id") + "'>0</div>").appendTo(form);
-                    $d.width(ow).height(ow).css({left: (lp - (i + 1) * od / 2 + 1 - 8) + 'px',
-                        top:($first.position().top + (j) * od - (i * od / 2)) + 'px'});
+                    var clz = "rel-val-0";
+                    if (thme.attr("type") == '1' || r2.attr("type") == '1') {
+                        clz = "rel-val-na";
+                    }
+                    $d = $("<div class='rotated rel-item " + clz + "' row='" + thme.attr("id").substr(4)
+                        + "' col='" + r2.attr("id").substr(4) + "'></div>").appendTo(form);
+                    $d.width(ow).height(ow).css({left: (lp - (i + 1) * od / 2 - 11) + 'px',
+                        top:($first.position().top + (j) * od - (i * od / 2) - 10) + 'px'});
                 }
             }
         }
