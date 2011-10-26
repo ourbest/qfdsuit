@@ -260,7 +260,62 @@ td.matrix {
     height: 22px;
 }
 
-.top-menu-items:hover {
-    background: rgba(255, 137, 137, 0.3);
+
+.input-menu {
+    background-color: #e6e6fa;
+    width: 20px;
+    border: 1px solid #fa8072;
+}
+
+.matrix-input {
+    background: url(rel.png) no-repeat -3000px 0;
     cursor: pointer;
+    height: 20px;
+    width: 20px;
+}
+
+.matrix-input-1 {
+    background-position: -30px 0;
+}
+
+.matrix-input-2 {
+    background-position: -51px 0;
+}
+
+.matrix-input-3 {
+    background-position: -72px 0;
+}
+
+.matrix-input-4 {
+    background-position: -30px -32px;
+}
+
+.matrix-input-5 {
+    background-position: -51px -32px;
+}
+
+.matrix-input-6 {
+    background-position: -72px -32px;
+}
+
+.matrix-input-7 {
+    background-position: -30px -61px;
+}
+
+.matrix-input-8 {
+    background-position: -51px -61px;
+}
+
+.matrix-input-9 {
+    background-position: -72px -61px;
+}
+
+.top-menu-items:hover, .matrix-input:hover {
+    background-color: rgba(255, 137, 137, 0.3);
+    cursor: pointer;
+}
+
+.inline {
+    min-height: 20px;
+    min-width: 20px;
 }

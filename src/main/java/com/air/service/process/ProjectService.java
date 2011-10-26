@@ -51,7 +51,13 @@ public class ProjectService {
     }
 
     public List<ProjectData> getData(long projectId, long formId) throws SQLException {
-        return projectDataDao.findByForm(projectId, formId);
+        List<ProjectData> form = projectDataDao.findByForm(projectId, formId);
+        MatrixForm mf = formService.getMatrixForm(formId);
+        if (mf != null) {
+            form.addAll(projectDataDao.findByForm(projectId, mf.getLeftId()));
+            form.addAll(projectDataDao.findByForm(projectId, mf.getTopId()));
+        }
+        return form;
     }
 
     public void setCellData(long projectId, long formId, long rowId, long colId, String data) throws SQLException {

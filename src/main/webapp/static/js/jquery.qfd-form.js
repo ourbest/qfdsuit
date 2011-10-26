@@ -15,6 +15,10 @@
         //Public Methods
         $.extend(me, {
             show: function() {
+                $mine.unbind("click");
+                $mine.click(function() {
+                    $(".input-menu").remove();
+                });
                 __init();
                 return me;
             },
@@ -60,7 +64,12 @@
                     $.each(data, function(i, a) {
                         var rid = a.rowId;
                         var cid = a.colId;
-                        $("td[row='" + rid + "'][col='" + cid + "']").find(".inline").html(a.data);
+                        var $td = $("td[row='" + rid + "'][col='" + cid + "']");
+                        if ($td.hasClass('matrix')) {
+                            $td.find(".inline").attr("class", "inline matrix-input matrix-input-" + a.data);
+                        } else {
+                            $td.find(".inline").html(a.data);
+                        }
                     });
                 });
             },
@@ -286,6 +295,9 @@
             tbl.find('th.col').each(function(i, col) {
                 var colId = col.id.substr(4); //col_
                 var $col = $(col);
+                if ($col.hasClass('self')) {
+                    clz = ' self';
+                }
                 if (!t || (t == 1 && $col.hasClass("matrix")) || (t == 2 && ($col.hasClass("self") || $col.hasClass("matrix")))) {
 //                    if(t == 1 && !$(col).hasClass('matrix')) return;
                     if ($col.hasClass("form-left") && t != 2) clz = ' form-left';
@@ -317,16 +329,35 @@
             $elem.html(v);
         }
 
-        function __show_editor(elem) {
+        function __show_editor(elem, e) {
             var $elem = $(elem);
             var val = $elem.html();
             if ($elem.find('.input').get(0)) return;
             if ($elem.parent().hasClass('matrix')) {
-                alert('selection...');
+                var $e = $("<div class='input-menu'><div class='matrix-input matrix-input-1' val='1'></div>" +
+                    "<div class='matrix-input matrix-input-2' val='2'></div><div class='matrix-input matrix-input-3' val='3'>" +
+                    "</div><div class='matrix-input matrix-input-4' val='4'></div><div class='matrix-input matrix-input-5' val='5'>" +
+                    "</div><div class='matrix-input matrix-input-6' val='6'></div><div class='matrix-input matrix-input-7' val='7'>" +
+                    "</div><div class='matrix-input matrix-input-8' val='8'></div><div class='matrix-input matrix-input-9' val='9'>" +
+                    "</div></div>");
+                $e.css({position:'absolute', "z-order":"100", "left": e.clientX, "top":e.clientY});
+                $e.appendTo("body");
+                $e.delegate(".matrix-input", "click", function() {
+                    var v = $(this).attr("val");
+                    $elem.attr("class", "inline matrix-input matrix-input-" + v);
+                    var me = $elem.parent();
+                    $(".input-menu").remove();
+                    $.post(opts.save_data_api,
+                        {projectId:opts.projectId, formId: opts.formId,
+                            rowId: $(me).attr("row"),
+                            colId:$(me).attr("col"),
+                            data:v});
+                });
                 return;
             }
             if (val == '&nbsp;') val = '';
             if ($elem.parent().hasClass('cell')) {
+                if(opts.form.formType && !$elem.parent().hasClass('self')) return;      // matrix不能修改原表的内容
                 $elem.html('');
                 $('<input class="input" style="border: 0">').width($elem.width()).keydown(
                     function(event) {
@@ -384,18 +415,18 @@
 
         function __init_inline() {
             $mine.undelegate(".inline", "click");
-            $mine.delegate(".inline", "click", function() {
-                __show_editor(this);
+            $mine.delegate(".inline", "click", function(e) {
+                __show_editor(this, e);
             });
         }
 
         function __init_rel_menu() {
-            $mine.undelegate(".rel-item", "dblclick");
-            $mine.delegate(".rel-item", "dblclick", function(e) {
+            $mine.undelegate(".rel-item", "click");
+            $mine.delegate(".rel-item", "click", function(e) {
                 $(".rel-menu").remove();
                 if ($(this).hasClass("rel-val-na")) return;
                 var me = this;
-                var menu = $('<div class="rel-menu" style="width:22px;height:65px">' +
+                var menu = $('<div class="rel-menu input-menu" style="width:22px;height:65px">' +
                     '<div class="top-menu-items" val="-1"></div>' +
                     '<div class="top-menu-items" val="0"></div>' +
                     '<div class="top-menu-items" val="1"></div></div>');
