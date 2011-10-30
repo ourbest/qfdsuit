@@ -26,7 +26,7 @@
         <div id="logon">
             <table cellspacing="0" cellpadding="4">
                 <tr>
-                    <td colspan="2" class="tab">DEMX QFD Suit Dashboard用户登录</td>
+                    <td colspan="2"  class="fnt_shaow boldsize">DEMX QFD Suit Dashboard用户登录</td>
                 </tr>
                 <tr>
                     <td class="rfont">用户名</td>

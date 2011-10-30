@@ -31,7 +31,7 @@
     </sidebar>
     <c:if test="${layout.rputs['body']!=null}">
         <maintainer>
-            <div class="lycontent">
+            <div class="lycontent mainbg">
                 <div class="wrapper">
                     <jsp:include page="${layout.rputs['body']}"/>
                 </div>

@@ -5,6 +5,11 @@
     function query(value, name) {
         alert(value + ":" + name)
     }
+
+    function logout()
+    {
+        location.href="${pageContext.request.contextPath}/logout";
+    }
 </script>
 <header>
     <div class="topline"></div>
@@ -20,7 +25,7 @@
             </div>
             <c:if test="${!empty role}">
             <div class="userbar"><img src="${pageContext.request.contextPath}/static/images/user16.png" alt="用户"> | ${realname}</div>
-            <div class="logon"><a id="add" href="index.html#" class="easyui-linkbutton" iconCls="icon-out">退出系统</a></div>
+            <div class="logon"><a id="add" href="#" class="easyui-linkbutton l-btnf" iconCls="icon-out" onclick="logout()">退出系统</a></div>
             </c:if>
         </div>
         <div class="menuview">

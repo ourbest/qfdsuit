@@ -71,16 +71,19 @@ public class ProjectService {
         setCellData(db);
     }
 
-    public void setCellData(ProjectData val) throws SQLException {
+    public List<ProjectData> setCellData(ProjectData val) throws SQLException {
         ProjectData db = projectDataDao.getData(val.getProjectId(), val.getRowId(), val.getColId());
         if (db == null) {
             projectDataDao.insert(val);
         } else {
+            db.setFormId(val.getFormId());
             db.setData(val.getData());
             db.setUpdateTime(new Date());
             projectDataDao.update(db);
         }
-        EventManager.getInstance().fireEvent(new CellUpdateEvent(db));
+        List<ProjectData> data = projectDataDao.findByForm(val.getProjectId(), val.getFormId());
+        EventManager.getInstance().fireEvent(new CellUpdateEvent(val, data));
+        return data;
     }
 
     public Project createProject(String name) throws SQLException {

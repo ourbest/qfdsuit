@@ -1,0 +1,49 @@
+.panel_title {
+    height: 30px;
+    line-height: 30px;
+    border-bottom: solid 4px #5279c0;
+    background: url('../images/panelbg.png') bottom repeat-x;
+}
+
+.panel_icon {
+    display: block;
+    float: left;
+    margin: 0px;
+    width: 60px;
+    background-color: #5279c0;
+    height: 30px;
+
+}
+
+.panel_arrow {
+    position: absolute;
+    top:34px;
+    height: 8px;
+    width: 60px;
+    margin: 0;
+    padding: 0;
+    background: url('../images/pane-arrow.png') top center no-repeat;
+    z-index: 9999;
+}
+
+.fnt_shaow{
+    letter-spacing: 2px;
+    text-shadow: 1px 1px white, -1px -1px #dfe0ff;
+    color: #080808;
+}
+.low-shadow {
+    font-size: 12px;
+    padding: 10px 0px 20px 10px;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px white, -1px -1px #dfe0ff;
+    color: #080808;
+}
+
+.boldsize {
+    font-weight: bold;
+}
+
+.left_align {
+    display: block;
+    float: left;
+}

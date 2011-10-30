@@ -61,16 +61,7 @@
                 });
 
                 $.get(opts.load_data_api, {formId:opts.formId, projectId:opts.projectId}, function(data) {
-                    $.each(data, function(i, a) {
-                        var rid = a.rowId;
-                        var cid = a.colId;
-                        var $td = $("td[row='" + rid + "'][col='" + cid + "']");
-                        if ($td.hasClass('matrix')) {
-                            $td.find(".inline").attr("class", "inline matrix-input matrix-input-" + a.data);
-                        } else {
-                            $td.find(".inline").html(a.data);
-                        }
-                    });
+                    __show_value(data);
                 });
             },
 
@@ -187,6 +178,24 @@
             }
         });
 
+        function __show_value(data) {
+            $.each(data, function(i, a) {
+                var rid = a.rowId;
+                var cid = a.colId;
+                var $td = $("td[row='" + rid + "'][col='" + cid + "']");
+                if ($td.hasClass('matrix')) {
+                    $td.find(".inline").attr("class", "inline matrix-input matrix-input-" + a.data);
+                } else {
+                    var div = $td.find(".inline");
+                    if (div.length) {
+                        div.html(a.data);
+                    } else {
+                        $td.html(a.data);
+                    }
+                }
+            });
+        }
+
         function __printCol(col, t) {
             var tbl = $mine.find(".form-table");
             var clz = t ? t == 2 ? ' self' : ' form-left' : ' matrix';
@@ -287,7 +296,7 @@
             if (idx == undefined) {
                 idx = tbl.find('tr').length - 2;
             }
-            var clz = t ? t == 2 ? '' : ' form-top' : ' matrix';
+            var clz = t ? t == 2 ? ' self' : ' form-top' : ' matrix';
             var line = $("<tr></tr>");
             $("<th class='row level-r-" + row.level + clz + "' id='row_" + row.rowId + "' type='"
                 + row.type + "'>" + row.title + "</th>").appendTo(line);
@@ -324,7 +333,7 @@
             var td = $elem.parent();
             var rid = td.attr("row"),  cid = td.attr("col");
             $.post(opts.save_data_api,
-                {projectId:opts.projectId, formId: opts.formId, rowId:rid, colId:cid, data:v});
+                {projectId:opts.projectId, formId: opts.formId, rowId:rid, colId:cid, data:v}, __show_value);
 //            if (v == '') v = '&nbsp;';
             $elem.html(v);
         }
@@ -357,7 +366,7 @@
             }
             if (val == '&nbsp;') val = '';
             if ($elem.parent().hasClass('cell')) {
-                if(opts.form.formType && !$elem.parent().hasClass('self')) return;      // matrix不能修改原表的内容
+                if (opts.form.formType && !$elem.parent().hasClass('self')) return;      // matrix不能修改原表的内容
                 $elem.html('');
                 $('<input class="input" style="border: 0">').width($elem.width()).keydown(
                     function(event) {

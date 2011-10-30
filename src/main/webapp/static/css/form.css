@@ -22,6 +22,10 @@ th.empty {
     border: 0;
 }
 
+td.empty {
+    border: 0;
+}
+
 .editor_1 {
     background-color: #efefef;
 }
@@ -85,31 +89,55 @@ th.level-c-1 div.rotate {
 }
 
 #designer-container {
-    position: relative;
+    position: absolute;
+    border: solid 8px #EEE;
+    -moz-box-shadow: inset 0 0 4px #000000;
+    -webkit-box-shadow: inset 0 0 4px #000000;
+    box-shadow: inset 0 0 4px #000000;
+
+    overflow: auto;
+    top: 34px;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    background: #fff url('../images/proxy.gif');
+    z-index: 995;
 }
 
 .form-type-0 {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
+    border: solid 1px #333;
     padding: 10px;
-    background-color: #f1f;
+    background:  #ed9797 url('../images/sheeticon.png') bottom center no-repeat;
     position: absolute;
+    -moz-box-shadow:  0 0 4px #000000;
+    -webkit-box-shadow:  0 0 4px #000000;
+    box-shadow:  0 0 4px #000000;
 }
 
 .form-type-1 {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     padding: 10px;
-    background-color: #ff1;
+    background:  #f2eeb4 url('../images/houseicon.png') bottom center no-repeat;
     position: absolute;
+    border: solid 1px #333;
+    -moz-box-shadow:  0 0 4px #000000;
+    -webkit-box-shadow:  0 0 4px #000000;
+    box-shadow:  0 0 4px #000000;
 }
 
 td.matrix {
     cursor: pointer;
 }
 
+td.self .inline {
+    cursor: pointer;
+}
+
 .type-r-1, .type-c-1 {
-    background: #666;
+    background: #AAA;
     cursor: default !important;
 }
 
@@ -128,9 +156,14 @@ td.matrix {
 #project-info {
     position: absolute;
     right: 15px;
-    top: 5px;
-    border: 1px solid #eef;
-    padding: 8px;
+    top: 20px;
+    border: 1px solid #666;
+    border-radius: 4px;
+    background-color: #EFEFEF;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(81, 81, 81, 1);
+    -webkit-box-shadow: 0 0 5px rgba(81, 81, 81, 1);
+    -moz-box-shadow: 0 0 5px rgba(81, 81, 81, 1);
 }
 
 #project-info label {
@@ -222,8 +255,81 @@ td.matrix {
     -moz-transform: rotate(-45deg);
 }
 
+.editor_panel {
+    position: absolute;
+    background: #FFF;
+    border-left: solid 1px #ccc;
+    border-right: solid 1px #ccc;
+    border-bottom: solid 1px #ccc;
+    -moz-border-radius-bottomleft: 4px;
+    -moz-border-radius-bottomright: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    bottom: 0px;
+    top: 34px;
+    padding: 0;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    z-index: 998;
+}
+
+.innerbar {
+    padding: 4px 20px 0 20px;
+    background: #EFEFEF;
+    border-bottom: solid 1px #ccc;
+    height: 30px;
+}
+
+.nowmarg {
+    margin: 0;
+}
+
+.sheetpanel {
+    position: absolute;
+    background-color: #FFF;
+    overflow: auto;
+    margin: 4px;
+    top: 36px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: solid 1px #eee;
+}
+
+.qfd-form {
+    position: absolute;
+    top: 30px;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+}
+
+#project-list {
+    display: none;
+    position: absolute;
+    background: #FFF;
+    border-left: solid 1px #ccc;
+    border-right: solid 1px #ccc;
+    border-bottom: solid 1px #ccc;
+    -moz-border-radius-bottomleft: 4px;
+    -moz-border-radius-bottomright: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    bottom: 0px;
+    top: 34px;
+    padding: 0;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    z-index: 998;
+}
+
+
+
 .rel-menu, .rel-item {
     background: url(rel.png) no-repeat;
+    z-index: 1000;
 }
 
 .rel-menu {
@@ -265,6 +371,7 @@ td.matrix {
     background-color: #e6e6fa;
     width: 20px;
     border: 1px solid #fa8072;
+    z-index: 1000;
 }
 
 .matrix-input {

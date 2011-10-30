@@ -133,8 +133,8 @@ public class ProjectAction {
     }
 
     public List<ProjectData> set(ProjectData val) throws SQLException {
-        projectService.setCellData(val);
-        return projectService.getData(val.getProjectId(), val.getFormId());
+        return projectService.setCellData(val);
+//        return projectService.getData(val.getProjectId(), val.getFormId());
     }
 
     public List<Project> list(TypeBvo type) throws SQLException {

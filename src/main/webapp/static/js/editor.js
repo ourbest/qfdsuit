@@ -1,4 +1,4 @@
-var call = $.post, $designer, $form, $info;
+var call = $.post, $designer,$desview, $form, $info;
 var runtime = {};
 var types = ['正常', '分类', '图表', '计算'];
 var _project = {
@@ -16,12 +16,31 @@ var _project = {
                 $("#project-status").val(data.status);
                 runtime.projectInfo = data;
                 $.each(pdata, function(i, a) {
-                    _form.draw_form(a);
+                    _form.draw_form(a, $designer);
                 });
                 $designer.show();
             });
         });
     },
+
+    show_project_th:function(projectId) {
+        projectId = projectId || '3';
+        $desview.find("div").remove();
+        rpc.qform.project.load({projectId:projectId}, function(pdata) {
+            runtime.projectId = projectId;
+            runtime.projectData = pdata;
+            rpc.qform.project.info({projectId: projectId}, function(data) {
+                $("#project-name").val(data.name);
+                $("#project-status").val(data.status);
+                runtime.projectInfo = data;
+                $.each(pdata, function(i, a) {
+                    _form.draw_form_th(a, $desview);
+                });
+                $desview.show();
+            });
+        });
+    },
+
     close_project:function() {
         runtime.projectId = null;
         $designer.find("div").remove();
@@ -46,38 +65,90 @@ var _project = {
     },
 
     show_def_projects:function() {
-        rpc.qform.project.list({type:0}, this.show_list);
+        this.toggle_list();
     },
 
     show_input_projects:function() {
+        this.toggle_list();
+        // todo 换显示方式
         rpc.qform.project.list({type:1}, this.show_list);
     },
 
     toggle_list:function() {
-        var $ul = $("#project-list ul");
-        $ul.children().remove();
+        var $uls = $("#project-list ul[class='ullist']");
+        $uls.each(function(a) {
+            $(this).children().remove();
+        });
         $designer.hide();
         $form.hide();
         $("#project-list").show();
-        return $ul;
-    },
-    show_templates:function() {
-        var me = this;
-        rpc.qform.project.templates(function(projects) {
-            me.toggle_list();
-            var $ul = $("#project-list ul");
-            $.each(projects, function(i, a) {
-                $("<li><a href='#' onclick='_project.clone_project(" + a.projectId + ");'>" + a.name + "</a> <a href=''>删除</a> </li>").appendTo($ul);
-            });
+        var listtabs = $('#sch_tabs').tabs({
+            tools:[
+                {
+                    iconCls:'icon-ls',
+                    handler: function() {
+                        alert('add');
+                    }
+                },
+                {
+                    iconCls:'icon-bk',
+                    handler: function() {
+                        alert('save');
+                    }
+                }
+            ],
+            onSelect:function(title) {
+                if (title == "QFD分析项目") {
+                    _project.get_proj_list();
+
+
+                }
+                else if (title == "QFD分析模板") {
+                    _project.get_temp_list();
+                }
+            },
+            width:640
         });
+        listtabs.tabs('resize');
+        return $uls;
     },
 
-    show_list:function(projects) {
-        var $ul = $("#project-list ul");
-        _project.toggle_list();
-        $.each(projects, function(i, a) {
-            $("<li><a href='#' onclick='_project.load_project(" + a.projectId + ");'>" + a.name + "</a></li>").appendTo($ul);
+    get_temp_list:function() {
+        var $ul = $("#temlist");
+        $ul.children().remove();
+        rpc.qform.project.templates(function(projects) {
+            var cnt = 1;
+            $.each(projects, function(i, a) {
+                var li = $("<li>" +
+                    "<span class='tha'>" + cnt + "</span>" +
+                    "<span class='showflow'></span>" +
+                    "<span class='thb'><a href='#' onclick='_project.clone_project(" + a.projectId + ");'>" + a.name + "</a></span>" +
+                    "<span class='thc'>原力</span>" +
+                    "<span class='thd'>2011-10-27</span>" +
+                    "<span class='tha'>简介</span>" +
+                    "<span class='thf'>这里是项目简介</span>" +
+                    "</li>");
+                li.appendTo($ul);
+                $('.showflow').click(function() {
+                    _project.show_preflow_view(a.projectId);
+                });
+                cnt++;
+            });
         });
+        return $ul;
+    },
+
+    show_preflow_view:function(prjid) {
+        _project.show_project_th(prjid);
+    },
+    get_proj_list:function() {
+
+        rpc.qform.project.list({type:0}, this.show_list);
+    },
+
+    show_templates:function() {
+        var me = this;
+        me.toggle_list();
     },
 
     create_project:function() {
@@ -97,6 +168,27 @@ var _project = {
 
         rpc.qform.project.cloneProject({projectId:projectId}, function(data) {
             me.load_project(data.projectId);
+        });
+    },
+
+    show_list: function(projects) {
+        var $ul = $("#prjlist");
+        $ul.children().remove();
+        var cnt = 1;
+        $.each(projects, function(i, a) {
+            var li = $("<li><span class='tha'>" + cnt + "</span>" +
+                "<span class='showflow'></span>" +
+                "<span class='thb'><a href='#' onclick='_project.load_project(" + a.projectId + ");'>" + a.name + "</a></span>" +
+                "<span class='thc'>原力</span>" +
+                "<span class='thd'>2011-10-27</span>" +
+                "<span class='tha'>简介:</span>" +
+                "<span class='thf'>这里是项目简介</span>" +
+                "</li>");
+            li.appendTo($ul);
+            $('.showflow').click(function() {
+                _project.show_preflow_view(a.projectId);
+            });
+            cnt++;
         });
     }
 };
@@ -120,7 +212,7 @@ var _form = {
                     runtime.projectId = projectId;
                     $designer.find("div").remove();
                     $.each(data, function(i, a) {
-                        me.draw_form(a);
+                        me.draw_form(a, $designer);
                     });
                 });
             } else {
@@ -169,9 +261,9 @@ var _form = {
         });
     },
 
-    draw_form:function(a) {
+    draw_form:function(a, container) {
         var f = $("<div id='" + a.formId + "' class='form-type-" + a.formType + "'>"
-            + a.formName + "</div>").appendTo("#designer-container");
+            + a.formName + "</div>").appendTo(container);
         f.draggable({
             onStopDrag: function() {
                 var pos = $(this).position();
@@ -182,6 +274,12 @@ var _form = {
                     posTop:  pos.top});
             }
         }).css({left: a.posLeft, top: a.posTop});
+    } ,
+
+    draw_form_th:function(a, container) {
+        var f = $("<div id='" + a.formId + "' class='form-type-th-" + a.formType + "'>"
+            + "...." + "</div>").appendTo(container);
+        f.css({left: a.posLeft / 2, top: a.posTop / 2});
     } ,
 
     delete_form: function() {
@@ -475,26 +573,26 @@ function getDialog() {
 }
 /*
 
-$(function() {
-//    $formMenu = $("#form-menu");
-    $designer = $("#designer-container");
-    $form = $("#form-editor");
-    $info = $("#project-info");
+ $(function() {
+ //    $formMenu = $("#form-menu");
+ $designer = $("#designer-container");
+ $form = $("#form-editor");
+ $info = $("#project-info");
 
-    $("#menu li a").click(function(e) {
-        var $t = $(this);
-        open_tab($t.attr("title"), $t.attr("href"));
-        e.preventDefault();
-        return false;
-    });
+ $("#menu li a").click(function(e) {
+ var $t = $(this);
+ open_tab($t.attr("title"), $t.attr("href"));
+ e.preventDefault();
+ return false;
+ });
 
-    $designer.delegate("div", "dblclick", function(e) {
-        runtime.formId = this.id;
-        _form.edit_form();
-        return false;
-    });
-});
-*/
+ $designer.delegate("div", "dblclick", function(e) {
+ runtime.formId = this.id;
+ _form.edit_form();
+ return false;
+ });
+ });
+ */
 
 function __readText(title, prompt, callback) {
     if (!document.getElementById("_input_dlg_")) {

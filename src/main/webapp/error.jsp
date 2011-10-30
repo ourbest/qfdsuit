@@ -24,7 +24,7 @@
         <div id="logon">
             <table cellspacing="0" cellpadding="0">
                 <tr>
-                    <td colspan="2" class="tab">导弹快速概念设计系统</td>
+                    <td colspan="2"  class="fnt_shaow boldsize">导弹快速概念设计系统</td>
                 </tr>
                 <tr>
                     <td class="rfont">错误信息:</td>

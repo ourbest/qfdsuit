@@ -15,7 +15,7 @@ public class FormRow {
     private String title;
     private int position; // matrix表中靠近哪方
     private long showOrder;
-    private int category;  // row = 1  col = 2;
+    private int category;  // row = 0  col = 1;
     private long itemId;
     private int level;
     private int type;     //

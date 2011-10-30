@@ -131,10 +131,14 @@
  	
 }
 
-a.l-btn {
-	color: #FFF;
+a.l-btnf {
+	color: #FFFFFF;
+    background: url("../images/button_b_bg.gif") no-repeat scroll right top transparent;
 }
 
+a.l-btnf span.l-btn-left {
+    background: url("../images/button_span_b_bg.gif") no-repeat scroll left top transparent;
+}
 .menuview{
 	position: fixed;
 	left: 250px;
@@ -165,4 +169,12 @@ a.l-btn {
 	width:234px;
 	height:21px;
 	border-bottom: solid #666 1px;	
+}
+
+.mainbg{
+    background: #FFF url('../images/mainbg.png') bottom repeat-x;
+}
+
+.gray{
+    color: #b3b3b3;
 }

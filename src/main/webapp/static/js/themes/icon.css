@@ -76,3 +76,15 @@
 .icon-org{
 	background:url('icons/org.png') no-repeat;
 }
+
+.icon-designer{
+    background:url('icons/designer.png') top left no-repeat;
+}
+
+.icon-bk{
+	background:url('icons/blocks.png') no-repeat;
+}
+
+.icon-ls{
+	background:url('icons/list.png') no-repeat;
+}
